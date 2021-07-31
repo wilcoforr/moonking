@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         jumpCountText.text = "" + JumpCount;
     }
 
+    private int maxJumpCharge = 1500;
+    private int jumpIncrement = 15;
 
     void Update()
     {
@@ -61,15 +63,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButton("Jump") && IsGrounded())
         {
-            if (jumpChargeCounter < 1500)
+            if (jumpChargeCounter < maxJumpCharge)
             {
-                jumpChargeCounter += 15;
+                jumpChargeCounter += jumpIncrement;
 
                 PlayerRigidBody.transform.localScale = new Vector3(
                         PlayerRigidBody.transform.localScale.x + 0.01f,
                         PlayerRigidBody.transform.localScale.y + 0.01f,
                         PlayerRigidBody.transform.localScale.z + 0.01f
                     );
+
 
                 //PlayerRigidBody.transform.localScale = 
                 //    new Vector3(PlayerRigidBody.transform.localScale.x + 0.0005f, 
